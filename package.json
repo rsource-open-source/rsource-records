@@ -1,0 +1,26 @@
+{
+  "name": "rsource-records",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rsource-open-source/rsource-records.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rsource-open-source/rsource-records/issues"
+  },
+  "homepage": "https://github.com/rsource-open-source/rsource-records#readme",
+  "devDependencies": {
+    "typescript": "^4.3.2"
+  },
+  "dependencies": {
+    "discord.js": "^13.0.0-dev.918921e8211fc16e9b12d2502f3168264246ea22"
+  }
+}
