@@ -1,9 +1,9 @@
 import { Message } from "discord.js";
 
 export interface IArgument {
-  name: string;
-  required: boolean;
-  type: string;
+  name: string,
+  required: boolean,
+  type: string
 }
 
 export interface ICommand {
@@ -12,10 +12,10 @@ export interface ICommand {
   description: string,
   permissions: number,
   restrictions?: {
-    guildOwnerOnly?: boolean;
-    botOwnerOnly?: boolean;
-    botPermissions: string;
+    guildOwnerOnly?: boolean,
+    botOwnerOnly?: boolean,
+    botPermissions: string,
   },
-  args?: IArgument[];
-  run(message: Message, args: string[]): Promise<void | Message>;
+  args?: IArgument[],
+  run(message: Message, args?: string[], flags?: string[]): Promise<void | Message>
 }
