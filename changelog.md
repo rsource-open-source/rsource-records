@@ -18,4 +18,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed 
 - [`package-lock.json`](https://github.com/rsource-open-source/rsource-records/blob/main/src/package.json) in `main/src`.
-- [`help.ts`], will work on this later.
+- `help.ts`, will work on this later.
