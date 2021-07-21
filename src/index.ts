@@ -68,3 +68,4 @@ client.once("ready", async () => {
 });
 
 client.login(__private.token).then(() => console.log('rsource records online'));
+//test
