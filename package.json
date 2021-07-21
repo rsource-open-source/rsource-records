@@ -1,6 +1,6 @@
 {
   "name": "rsource-records",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "TypeScript written discord bot that uses the StrafesNET api to send content from the Roblox bhop and surf games.",
   "main": "index.ts",
   "scripts": {

@@ -17,6 +17,7 @@ declare module "discord.js" {
 const __private = require('../private.json') // ts(1214)
 const config = require('../config.json') as IConfig;
 const client = new Client({ intents: Intents.ALL });
+const files: string[] = readdirSync('./dist/commands').filter(x => x.endsWith('.js'));
 
 client.commands = new Collection();
 
@@ -33,6 +34,10 @@ client.on("message", async (message) => {
       return;
     }
     try {
+      if(client.commands.get(commandStr)?.guildOnly === false) {
+        message.reply(`This command is a guild only command, meaning you can only run this in servers.`)
+        return;
+      }
       client.commands.get(commandStr)?.run(message, args);
     } catch (err) {
       console.error(err);
@@ -55,7 +60,6 @@ client.once("ready", async () => {
   require is branced from the local file, meaning if you're getting a file, you would have to root it from the file instead of starting from the top directory; readdir(Sync) is exactly opposite.
   If you didn't get it already, I was missing this bug because of ONE FUCKING CHARACTER, and it was on the const command line, where I was missing ONE FUCKING PERIOD.
   */
-  const files: string[] = readdirSync('./dist/commands').filter(x => x.endsWith('.js'));
   for(const file of files){
     const command = require(`../dist/commands/${file.substring(0, file.length - 3)}.js`)
     //@ts-ignore

@@ -6,6 +6,7 @@ module.exports.ping = {
   aliases: ["p"],
   description: "returns pong",
   permissions: 0,
+  guildOnly: true,
   async run(message: Message) {
     message.reply('pong!')
   },

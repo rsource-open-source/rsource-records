@@ -11,6 +11,7 @@ export interface ICommand {
   aliases?: string[],
   description: string,
   permissions: number,
+  guildOnly: boolean;
   restrictions?: {
     guildOwnerOnly?: boolean,
     botOwnerOnly?: boolean,
