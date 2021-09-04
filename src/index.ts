@@ -5,9 +5,10 @@ import {
   CommandClient,
   ShardClient,
 } from "detritus-client";
-var colors = require("colors/safe");
+import colors from "colors/safe";
 
-import { runSCC, runCC, runShard } from "./consoleFunctions";
+//namespaces
+import { consoleFns } from "./consoleFunctions";
 
 //interfaces
 import { IPrivate, IConfig } from "./interfaces";
@@ -49,8 +50,9 @@ commandClient.add({
 (async () => {
   //console.log('initializing commands via /commands')
   //commandClient.addMultipleIn('./commands');
-  runShard(shardClient);
-  runCC(commandClient);
-  runSCC(slashClient);
+  //add stop on error
+  await consoleFns.runShard(shardClient);
+  await consoleFns.runCC(commandClient);
+  await consoleFns.runSCC(slashClient);
   console.log(colors.black(colors.bgGreen(`rsource records online`)));
 })();
