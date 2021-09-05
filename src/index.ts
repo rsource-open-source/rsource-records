@@ -30,8 +30,8 @@ const interactionCommandClient = new InteractionCommandClient(__private.token);
 const commandClient = new CommandClient(__private.token, {
   prefix: config.prefix,
   ignoreMe: true,
-  //mentionsEnabled: false,
-  //activateOnEdits: true,
+  mentionsEnabled: true, // @bot command
+  activateOnEdits: true, // edited msgs check for cmds
   useClusterClient: false,
 });
 
