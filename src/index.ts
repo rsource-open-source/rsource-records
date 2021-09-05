@@ -30,8 +30,8 @@ const interactionCommandClient = new InteractionCommandClient(__private.token);
 const commandClient = new CommandClient(__private.token, {
   prefix: config.prefix,
   ignoreMe: true,
-  mentionsEnabled: true, // @bot command
-  activateOnEdits: true, // edited msgs check for cmds
+  mentionsEnabled: true,
+  activateOnEdits: true,
   useClusterClient: false,
 });
 
@@ -48,7 +48,31 @@ interactionCommandClient.add({
 
 commandClient.add({
   name: "ping",
-  run: (ctx) => ctx.reply("<@533757461706964993>"),
+  run: (ctx) => {
+    ctx.reply("pong");
+  },
+});
+
+commandClient.add({
+  name: "getuser1",
+  onBefore: (ctx) => ctx.client.isOwner(ctx.userId),
+  onCancel: (ctx) => ctx.reply("no"),
+  run: async (ctx) => {
+    await ctx.reply("test");
+  },
+});
+
+interactionCommandClient.add({
+  name: "getuser",
+  onBefore: (ctx) => ctx.client.isOwner(ctx.userId),
+  onCancel: (ctx) =>
+    ctx.respond(InteractionCallbackTypes.CHANNEL_MESSAGE_WITH_SOURCE, "no"),
+  run: async (ctx) => {
+    await ctx.respond(
+      InteractionCallbackTypes.CHANNEL_MESSAGE_WITH_SOURCE,
+      "test"
+    );
+  },
 });
 
 (async () => {
@@ -57,7 +81,7 @@ commandClient.add({
     await consoleFns.importCommands(commandClient, interactionCommandClient);
     await consoleFns.runShard(shardClient);
     await consoleFns.runCC(commandClient);
-    await consoleFns.runICC(interactionCommandClient);
+    //await consoleFns.runICC(interactionCommandClient);
     console.log(colors.black(colors.bgGreen(`rsource records online`)));
   } catch (err) {
     console.log(colors.red("[error] ") + err);
