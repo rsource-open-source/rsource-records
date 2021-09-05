@@ -1,7 +1,7 @@
 import {
   ShardClient,
   CommandClient,
-  SlashCommandClient,
+  InteractionCommandClient,
 } from "detritus-client";
 
 import colors from "colors/safe";
@@ -12,7 +12,7 @@ const config = require("../config.json") as IConfig;
 export namespace consoleFns {
   export async function runShard(shardClient: ShardClient) {
     console.log(colors.green("[run] ") + "shard client");
-    await shardClient.run().catch((err) => {
+    await shardClient.run().catch((err: Error) => {
       console.log(colors.red("[error] ") + err);
     });
     console.log(colors.green("[run] ") + "modifying presence");
@@ -35,14 +35,16 @@ export namespace consoleFns {
 
   export async function runCC(commandClient: CommandClient) {
     console.log(colors.green("[run] ") + "command client");
-    await commandClient.run().catch((err) => {
+    await commandClient.run().catch((err: Error) => {
       console.log(colors.red("[error] ") + err);
     });
   }
 
-  export async function runSCC(slashClient: SlashCommandClient) {
+  export async function runICC(
+    interactionCommandClient: InteractionCommandClient
+  ) {
     console.log(colors.green("[run] ") + "slash client");
-    await slashClient.run().catch((err) => {
+    await interactionCommandClient.run().catch((err: Error) => {
       console.log(colors.red("[error] ") + err);
     });
   }

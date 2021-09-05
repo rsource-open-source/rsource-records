@@ -1,7 +1,7 @@
 //lib
 import {
   Constants,
-  SlashCommandClient,
+  InteractionCommandClient,
   CommandClient,
   ShardClient,
 } from "detritus-client";
@@ -26,12 +26,16 @@ const shardClient = new ShardClient(__private.token, {
     loadAllMembers: true,
   },
 });
-const slashClient = new SlashCommandClient(__private.token);
+const interactionCommandClient = new InteractionCommandClient(__private.token);
 const commandClient = new CommandClient(__private.token, {
   prefix: config.prefix,
+  ignoreMe: true,
+  //mentionsEnabled: false,
+  //activateOnEdits: true,
+  useClusterClient: false,
 });
 
-slashClient.add({
+interactionCommandClient.add({
   description: "shot",
   name: "shit",
   run: (ctx) => {
@@ -44,15 +48,18 @@ slashClient.add({
 
 commandClient.add({
   name: "ping",
-  run: (ctx) => ctx.reply("pong!"),
+  run: (ctx) => ctx.reply("<@533757461706964993>"),
 });
 
 (async () => {
   //console.log('initializing commands via /commands')
-  //commandClient.addMultipleIn('./commands');
+  commandClient.addMultipleIn("./commands", { subdirectories: true });
+  interactionCommandClient.addMultipleIn("./commands", {
+    subdirectories: true,
+  });
   //add stop on error
   await consoleFns.runShard(shardClient);
   await consoleFns.runCC(commandClient);
-  await consoleFns.runSCC(slashClient);
+  await consoleFns.runICC(interactionCommandClient);
   console.log(colors.black(colors.bgGreen(`rsource records online`)));
 })();
