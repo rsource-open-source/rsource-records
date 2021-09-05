@@ -52,14 +52,14 @@ commandClient.add({
 });
 
 (async () => {
-  //console.log('initializing commands via /commands')
-  commandClient.addMultipleIn("./commands", { subdirectories: true });
-  interactionCommandClient.addMultipleIn("./commands", {
-    subdirectories: true,
-  });
-  //add stop on error
-  await consoleFns.runShard(shardClient);
-  await consoleFns.runCC(commandClient);
-  await consoleFns.runICC(interactionCommandClient);
-  console.log(colors.black(colors.bgGreen(`rsource records online`)));
+  process.stdout.write("\n"); //console.log('\n') prints out two newlines
+  try {
+    await consoleFns.importCommands(commandClient, interactionCommandClient);
+    await consoleFns.runShard(shardClient);
+    await consoleFns.runCC(commandClient);
+    await consoleFns.runICC(interactionCommandClient);
+    console.log(colors.black(colors.bgGreen(`rsource records online`)));
+  } catch (err) {
+    console.log(colors.red("[error] ") + err);
+  }
 })();
