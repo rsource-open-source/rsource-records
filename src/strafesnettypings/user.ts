@@ -1,6 +1,10 @@
-export interface user {
+export enum UserState {
+  NORMAL,
+  WHITELISTED,
+  BLACKLISTED
+}
+export interface User {
   ID: number;
   Username: string;
-  State: 0 | 1 | 2;
-  // 0 = normal, 1 = whitelisted, 2 = blacklisted
+  State: UserState;
 }
