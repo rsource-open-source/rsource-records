@@ -10,6 +10,8 @@ import colors from "colors/safe";
 //namespaces
 import { consoleFns } from "./consoleFunctions";
 
+//import * as SNtypings from "SNtypings";
+
 //interfaces
 import { IPrivate, IConfig } from "./interfaces";
 
@@ -58,7 +60,15 @@ commandClient.add({
   onBefore: (ctx) => ctx.client.isOwner(ctx.userId),
   onCancel: (ctx) => ctx.reply("no"),
   run: async (ctx) => {
-    await ctx.reply("test");
+    //why the fuck doesnt this api req work?
+    //leaving this here for later
+    //fetch(
+    //  "https://api.strafes.net/v1/user/49874511?api-key=asdasddasdasd" // + __private.apikey
+    //)
+    //  .then((res) => console.log("resolved", res.json()))
+    //  .then((data) => console.log("data", data))
+    //  .catch((err) => console.error("error", err));
+    await ctx.reply("data");
   },
 });
 
