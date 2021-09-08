@@ -6,7 +6,7 @@ rsource-records is switching to [detritus](https://github.com/detritusjs/client)
 
 [Project Board](https://github.com/orgs/rsource-open-source/projects/1)
 
-Shortlink for this repository: https://rsource.rqft.space/src
+Shortlink for this repository: https://rsource.rqft.space/bot/
 
 rsource discord: https://rsource.rqft.space/
 
@@ -24,4 +24,4 @@ troubleshooting:
 (windows)
 edit environment variables on account
 path > edit > new
-`C:\Users\username\AppData\Roaming\npm\`
+`%USERPATH%\AppData\Roaming\npm\`
