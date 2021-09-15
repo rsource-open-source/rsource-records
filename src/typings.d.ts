@@ -29,7 +29,7 @@ declare module "SNtypings" {
   }
 
   export interface ApiError {
-    readonly code: number; //http code, https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+    readonly code: number; //MIGHT be an http code, https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
     readonly message: string;
     readonly reference: string;
   }
@@ -61,5 +61,14 @@ declare module "SNtypings" {
     readonly Rank: number;
     readonly Skill: number;
     readonly Placement: number;
+  }
+  
+  export interface Map {
+    readonly ID: number;
+    readonly DisplayName: string;
+    readonly Creator: string;
+    readonly Game: GameID; //?
+    readonly Date: Date | number; // be more specific here
+    readonly PlayCount: number;
   }
 }
