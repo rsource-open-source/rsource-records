@@ -27,7 +27,6 @@ export namespace consoleFns {
       .catch(err)
     log({ color: 'blue', title: 'import', message: 'imported prefixed commands' })
     
-
     await interactionCommandClient
       .addMultipleIn("./commands", { subdirectories: true })
       .catch(err);
@@ -62,7 +61,7 @@ export namespace consoleFns {
   export async function runICC(
     interactionCommandClient: InteractionCommandClient
   ) {
-    log({ color: 'green', title: 'run', message: `Started Slash CommandClient` })
+    log({ color: 'green', title: 'run', message: `Starting InteractionCommandClient` })
     await interactionCommandClient.run();
   }
 }
