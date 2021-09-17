@@ -94,6 +94,6 @@ interactionCommandClient.add({
     //await consoleFns.runICC(interactionCommandClient);
     await consoleFns.log({ color: 'purple', title: 'success', message: 'rsource records online :3' })
   } catch (err) {
-    console.log(colors.red("[error] ") + err);
+    await consoleFns.err(err);
   }
 })();
