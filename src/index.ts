@@ -5,7 +5,7 @@ import {
   CommandClient,
   ShardClient,
 } from "detritus-client";
-import colors from "colors/safe";
+import * as Colors from "colors";
 
 //namespaces
 import { consoleFns } from "./consoleFunctions";
@@ -92,8 +92,14 @@ interactionCommandClient.add({
     await consoleFns.runShard(shardClient);
     await consoleFns.runCC(commandClient);
     //await consoleFns.runICC(interactionCommandClient);
-    await consoleFns.log({ color: 'purple', title: 'success', message: 'rsource records online :3' })
+    await consoleFns.log({
+      color: Colors.magenta,
+      title: "success",
+      message: "rsource records online :3",
+    });
   } catch (err) {
+    //i dont get this part why the hell is it unknown
+    //Argument of type 'unknown' is not assignable to parameter of type 'Error'.
     await consoleFns.err(err);
   }
 })();

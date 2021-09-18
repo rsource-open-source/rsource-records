@@ -5,41 +5,77 @@ import {
 } from "detritus-client";
 
 import colors from "colors/safe";
+import * as Colors from "colors";
 
 import { IConfig } from "./interfaces";
 const config = require("../config.json") as IConfig;
 
 export namespace consoleFns {
-  export function log({ color, title, message }: { color: string, title: string, message: string }) {
-    console.log(`${colors[color](`[${title}]`)} ${message}`)
+  export async function log({
+    color,
+    title,
+    message,
+  }: {
+    color: Colors.Color;
+    title: string;
+    message: Error | string;
+  }) {
+    //too tired to solve this
+    //below errors because: Type 'Color' cannot be used as an index type.
+    console.log(`${colors[color](`[${title}]`)} ${message}`);
   }
-  export function err(error: Error) {
-    return log({ color: 'red', title: 'error', message: error.message })
+  export async function err(error: Error) {
+    try {
+      log({
+        color: Colors.red,
+        title: "error",
+        message: error,
+      }).then(() => {
+        process.exit();
+      });
+    } catch (err) {
+      console.error(err);
+      process.exit();
+    }
   }
   export async function importCommands(
     commandClient: CommandClient,
     interactionCommandClient: InteractionCommandClient
   ) {
-    log({ color: 'green', title: 'run', message: 'importing and initializing commands' })
+    log({
+      color: Colors.green,
+      title: "run",
+      message: "Importing and initializing commands",
+    });
 
     await commandClient
       .addMultipleIn("./commands", { subdirectories: true })
-      .catch(err)
-    log({ color: 'blue', title: 'import', message: 'imported prefixed commands' })
-    
+      .catch(err);
+    log({
+      color: Colors.blue,
+      title: "import",
+      message: "imported prefixed commands",
+    });
+
     await interactionCommandClient
       .addMultipleIn("./commands", { subdirectories: true })
       .catch(err);
-    log({ color: 'blue', title: 'import', message: 'imported slash commands' })
+    log({
+      color: Colors.blue,
+      title: "import",
+      message: "imported slash commands",
+    });
   }
 
   export async function runShard(shardClient: ShardClient) {
-    
     await shardClient.run();
-    log({ color: 'green', title: 'run', message: `Started shard ${shardClient.id}` })
+    log({
+      color: Colors.green,
+      title: "run",
+      message: `Started shard ${shardClient.shardId}`,
+    });
 
     shardClient.gateway.setPresence({
-      //await does not have affect on this
       activity: {
         name: `${
           config.shout === null
@@ -50,18 +86,30 @@ export namespace consoleFns {
         url: "https://twitch.tv/insyri",
       },
     });
-    log({ color: 'green', title: 'run', message: `Updated presence of shard ${shardClient.id}` })
+    log({
+      color: Colors.green,
+      title: "run",
+      message: `Updated presence of shard ${shardClient.shardId}`,
+    });
   }
 
   export async function runCC(commandClient: CommandClient) {
-    log({ color: 'green', title: 'run', message: `Starting CommandClient` })
+    log({
+      color: Colors.gray,
+      title: "run",
+      message: `Starting CommandClient`,
+    });
     await commandClient.run();
   }
 
   export async function runICC(
     interactionCommandClient: InteractionCommandClient
   ) {
-    log({ color: 'green', title: 'run', message: `Starting InteractionCommandClient` })
+    log({
+      color: Colors.green,
+      title: "run",
+      message: `Starting InteractionCommandClient`,
+    });
     await interactionCommandClient.run();
   }
 }
