@@ -100,6 +100,6 @@ interactionCommandClient.add({
   } catch (err) {
     //i dont get this part why the hell is it unknown
     //Argument of type 'unknown' is not assignable to parameter of type 'Error'.
-    await consoleFns.err(err);
+    await consoleFns.err(<Error>err);
   }
 })();
