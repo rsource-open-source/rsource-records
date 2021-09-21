@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/rsource-open-source/rsource-records#readme",
   "devDependencies": {
-    "prisma": "^2.25.0"
+    "prisma": "^3.1.1"
   },
   "dependencies": {
     "colors": "^1.4.0",
