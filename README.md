@@ -1,4 +1,12 @@
 # rsource-records
+```
+                                                                          __    
+   ______________  __  _______________     ________  _________  _________/ /____
+  / ___/ ___/ __ \/ / / / ___/ ___/ _ \   / ___/ _ \/ ___/ __ \/ ___/ __  / ___/
+ / /  (__  ) /_/ / /_/ / /  / /__/  __/  / /  /  __/ /__/ /_/ / /  / /_/ (__  ) 
+/_/  /____/\____/\__,_/_/   \___/\___/  /_/   \___/\___/\____/_/   \__,_/____/  
+                                                                                
+```
 
 rsource-records is a discord bot used to fetch information from the Roblox bhop & surf games via the [StrafesNET API](https://api.strafes.net/). This aims to be a bot that has many more features than just an API fetcher in the future.
 
