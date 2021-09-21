@@ -13,6 +13,8 @@ rsource-records is a TypeScript written Discord bot used to fetch content from t
 This aims to be a bot that has many more features than just an API fetcher in the future.
 rsource-records uses the upcoming [detritus client](https://github.com/detritusjs/client) Discord API wrapper. 🎉🥳
 
+***This is still in its early development phase.***
+
 [Project Board](https://github.com/orgs/rsource-open-source/projects/1)
 
 Shortlink for this repository: https://rsource.rqft.space/bot/
