@@ -8,28 +8,66 @@
                                                                                 
 ```
 
-rsource-records is a discord bot used to fetch information from the Roblox bhop & surf games via the [StrafesNET API](https://api.strafes.net/). This aims to be a bot that has many more features than just an API fetcher in the future.
-
-rsource-records is switching to [detritus](https://github.com/detritusjs/client)! 🎉🥳
+rsource-records is a TypeScript written Discord bot used to fetch content from the Roblox bhop & surf games via the [StrafesNET API](https://api.strafes.net/).
+This aims to be a bot that has many more features than just an API fetcher in the future.
+rsource-records uses the upcoming [detritus client](https://github.com/detritusjs/client) Discord API wrapper.
 
 [Project Board](https://github.com/orgs/rsource-open-source/projects/1)
 
 Shortlink for this repository: https://rsource.rqft.space/bot/
 
-rsource discord: https://rsource.rqft.space/
+## The Future
+- rsource-records will be hosted on a DigitalOcean Droplet
+- Heavy use of Prisma and MySql database
+- Docker, maybe
+- FFMPEG
 
-note to self cuz i keep forgetting how to run this bot lol:
+## Setup
+
+### Services
+
+\*not in use yet
+
+Requirements:
+- [Node](https://nodejs.org/)
+- [Git](https://git-scm.com/)
+- [Prisma](https://prisma.io/)\*
+- [MySql](https://mysql.com/)\*
+
+What we use (optional services):
+- Code editor/IDE: [VSCode](https://code.visualstudio.com/)
+- [nodemon](https://nodemon.io/)
+
+### Setting up
+
+Creating a local copy of this repository and running:
 
 ```bash
-tsc -w
-# open split terminal
-# install nodemon
-nodemon dist
+git clone https://github.com/rsource-open-source/rsource-records.git # creates repository locally
+cd rsource-records
 ```
 
-troubleshooting:
+Now that we have the repository on our machine, let's populate it.
 
-(windows)
-edit environment variables on account
-path > edit > new
-`%USERPATH%\AppData\Roaming\npm\`
+```bash
+npm i # installs all dependencies
+code private.json # assuming you use vscode
+```
+
+Populate the `private.json` and the `config.json` file with the applicable interfaces [here](https://github.com/rsource-open-source/rsource-records/blob/main/src/interfaces.ts).
+
+After that, we can compile and run the code, here, we use nodemon to run out code everytime we save a file, if you don't want to use nodemon run the according:
+
+```bash
+tsc # compiles
+# create a split terminal
+tsnode src/index.ts
+```
+
+Else:
+
+```bash
+tsc -w # compiles and watches for saves
+# create a split terminal
+nodemon dist
+```
