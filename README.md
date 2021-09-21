@@ -7,10 +7,11 @@
 /_/  /____/\____/\__,_/_/   \___/\___/  /_/   \___/\___/\____/_/   \__,_/____/  
                                                                                 
 ```
+<!--the font uses "slant"-->
 
 rsource-records is a TypeScript written Discord bot used to fetch content from the Roblox bhop & surf games via the [StrafesNET API](https://api.strafes.net/).
 This aims to be a bot that has many more features than just an API fetcher in the future.
-rsource-records uses the upcoming [detritus client](https://github.com/detritusjs/client) Discord API wrapper.
+rsource-records uses the upcoming [detritus client](https://github.com/detritusjs/client) Discord API wrapper. 🎉🥳
 
 [Project Board](https://github.com/orgs/rsource-open-source/projects/1)
 
