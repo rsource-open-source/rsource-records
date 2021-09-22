@@ -32,7 +32,7 @@ const commandClient = new CommandClient(__private.token, {
   prefix: config.prefix,
   ignoreMe: true,
   mentionsEnabled: true,
-  activateOnEdits: true,
+  activateOnEdits: truee,
   useClusterClient: false,
 });
 
