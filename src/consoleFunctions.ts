@@ -59,8 +59,12 @@ export namespace consoleFns {
     title: string;
     message: Error | string;
   }) {
-    //@ts-ignore
-    console.log(`${chalk[color](`[${title}]`)} ${message}`);
+    console.log(
+      //@ts-ignore
+      `${chalk.gray(`[${new Date().toLocaleTimeString("en-US")}]`)} ${chalk[
+        color
+      ](`[${title}]`)} ${message}`
+    );
   }
 
   export async function err(error: Error) {
