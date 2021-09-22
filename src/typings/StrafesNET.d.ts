@@ -93,11 +93,8 @@ export interface Time {
   readonly map: number;
   /**
    * ## READ
-   * This returns a **number**, to use as a date, use it as a paramater
-   * into a date function.
-   * This is a UNIX Epoch number, meaning:
-   * Represents the number of seconds that have elapsed since the
-   * midnight of January 1, 1970, UTC.
+   * This returns a **number**, to use as a date.
+   * This is a UNIX Epoch number.
    * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date}
    */
   readonly date: number;
