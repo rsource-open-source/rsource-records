@@ -102,7 +102,7 @@ interactionCommandClient.add({
       title: "success",
       message: "rsource records online :3",
     });
-  } castch (err) {
+  } catch (err) {
     await consoleFns.err(<Error>err);
   }
 })();
