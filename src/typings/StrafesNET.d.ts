@@ -55,7 +55,7 @@ export interface ApiError {
   readonly code?: HttpStatusCode;
   readonly message: ApiErrorMessages;
   /**
-   * A UUID for tracing errors (idfk what this is)
+   * A UUID for tracing errors (idfk what this is).
    */
   readonly reference?: string;
 }
@@ -103,7 +103,7 @@ export interface Time {
   readonly Date: number;
   readonly Style: StyleID;
   /**
-   * @itzaname what the fuck is this
+   * @itzaname what the fuck is this.
    */
   readonly Mode: number;
   readonly Game: GameID;
@@ -113,7 +113,7 @@ export interface Rank {
   /**
    * Rank ID.
    * > There are multiple ranks per user so using the same id for each one would be kinda wack
-   * itaname
+   * From itzaname.
    */
   readonly ID: number;
   /**
@@ -123,7 +123,7 @@ export interface Rank {
   readonly User: number;
   readonly Style: StyleID;
   /**
-   * @itzaname what the fuck is this
+   * @itzaname what the fuck is this.
    */
   readonly Mode: number;
   readonly Game: GameID;
@@ -151,7 +151,7 @@ export interface Map {
    */
   readonly DisplayName: string;
   /**
-   * Model owner
+   * Model owner.
    */
   readonly Creator: string;
   readonly Game: GameID;
