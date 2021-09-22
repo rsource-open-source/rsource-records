@@ -6,20 +6,20 @@ export enum ApiErrorMessages {
   /**
    * This string returns when no API key is found or given.
    */
-  NOAPIKEY = "No API key found in request",
+  NO_API_KEY = "No API key found in request",
 
   /**
    * This returns when the given API key is invalid, this means
    * either the key has been suspended/revoked, not an API key,
    * or typed wrong. This returns a 401 HTTP code.
    */
-  INVAPIKEY = "Invalid authentication credentials",
+  INVALID_API_KEY = "Invalid authentication credentials",
 
   /**
    * The inputed value cannot be found or matched in the API Database.
    * This returns a 404 HTTP code.
    */
-  NOTFOUND = "Not Found",
+  NOT_FOUND = "Not Found",
 }
 
 export enum GameID {
@@ -65,9 +65,9 @@ export interface User {
    * Roblox user ID.
    * https://www.roblox.com/users/{ID}/profile
    */
-  readonly ID: number;
-  readonly Username: string;
-  readonly State: UserState;
+  readonly id: number;
+  readonly username: string;
+  readonly state: UserState;
 }
 
 /**
@@ -77,20 +77,20 @@ export interface Time {
   /**
    * Time ID, you cannot get this in-game.
    */
-  readonly ID: number;
+  readonly id: number;
   /**
    * Time, in milliseconds, remember to multiple this value by 1000 for it's true value.
    */
-  readonly Time: number;
+  readonly time: number;
   /**
    * Roblox user ID.
    * https://www.roblox.com/users/{ID}/profile
    */
-  readonly User: number;
+  readonly user: number;
   /**
    * Map ID.
    */
-  readonly Map: number;
+  readonly map: number;
   /**
    * ## READ
    * This returns a **number**, to use as a date, use it as a paramater
@@ -100,13 +100,13 @@ export interface Time {
    * midnight of January 1, 1970, UTC.
    * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date}
    */
-  readonly Date: number;
-  readonly Style: StyleID;
+  readonly date: number;
+  readonly style: StyleID;
   /**
    * @itzaname what the fuck is this.
    */
-  readonly Mode: number;
-  readonly Game: GameID;
+  readonly mode: number;
+  readonly game: GameID;
 }
 
 export interface Rank {
@@ -115,46 +115,46 @@ export interface Rank {
    * > There are multiple ranks per user so using the same id for each one would be kinda wack
    * From itzaname.
    */
-  readonly ID: number;
+  readonly id: number;
   /**
    * Roblox user ID.
    * https://www.roblox.com/users/{ID}/profile
    */
-  readonly User: number;
-  readonly Style: StyleID;
+  readonly user: number;
+  readonly style: StyleID;
   /**
    * @itzaname what the fuck is this.
    */
-  readonly Mode: number;
-  readonly Game: GameID;
+  readonly mode: number;
+  readonly game: GameID;
   /**
    * 1 being the top.
    */
-  readonly Rank: number;
+  readonly rank: number;
   /**
    * Skill percentage to the 15th digit, 0-1.
    */
-  readonly Skill: number;
+  readonly skill: number;
   /**
    * Placement worldwide, 1 being the top.
    */
-  readonly Placement: number;
+  readonly placement: number;
 }
 
 export interface Map {
   /**
    * Map model ID.
    */
-  readonly ID: number;
+  readonly id: number;
   /**
    * The string that you see when selecting on the rtv command.
    */
-  readonly DisplayName: string;
+  readonly displayName: string;
   /**
    * Model owner.
    */
-  readonly Creator: string;
-  readonly Game: GameID;
+  readonly dreator: string;
+  readonly game: GameID;
   /**
    * ## READ
    * This returns a **number**, to use as a date, use it as a paramater
@@ -164,6 +164,6 @@ export interface Map {
    * midnight of January 1, 1970, UTC.
    * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date}
    */
-  readonly Date: number;
-  readonly PlayCount: number;
+  readonly date: number;
+  readonly playCount: number;
 }
