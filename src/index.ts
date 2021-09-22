@@ -5,12 +5,11 @@ import {
   CommandClient,
   ShardClient,
 } from "detritus-client";
-import * as Colors from "colors";
 
 //namespaces
-import { consoleFns } from "./consoleFunctions";
+import { ColorStringFns, consoleFns } from "./consoleFunctions";
 
-//import * as SNtypings from "SNtypings";
+//import * as StrafesNET from './typings/StrafesNET';
 
 //interfaces
 import { IPrivate, IConfig } from "./interfaces";
@@ -62,9 +61,15 @@ commandClient.add({
   run: async (ctx) => {
     //why the fuck doesnt this api req work?
     //leaving this here for later
-    //fetch(
-    //  "https://api.strafes.net/v1/user/49874511?api-key=asdasddasdasd" // + __private.apikey
-    //)
+    //const response = fetch(
+    //  "https://api.strafes.net/v1/user/49874511?api-key=" + __private.apikey,
+    //  {
+    //    headers: {
+    //      "Content-Type": "applications/json",
+    //      Authorization: __private.apikey,
+    //    },
+    //  }
+    //);
     //  .then((res) => console.log("resolved", res.json()))
     //  .then((data) => console.log("data", data))
     //  .catch((err) => console.error("error", err));
@@ -86,20 +91,18 @@ interactionCommandClient.add({
 });
 
 (async () => {
-  process.stdout.write("\n"); //console.log('\n') prints out two newlines
+  process.stdout.write("\n");
   try {
     await consoleFns.importCommands(commandClient, interactionCommandClient);
     await consoleFns.runShard(shardClient);
     await consoleFns.runCC(commandClient);
-    //await consoleFns.runICC(interactionCommandClient);
+    await consoleFns.runICC(interactionCommandClient);
     await consoleFns.log({
-      color: Colors.magenta,
+      color: ColorStringFns.MAGENTA,
       title: "success",
       message: "rsource records online :3",
     });
   } catch (err) {
-    //i dont get this part why the hell is it unknown
-    //Argument of type 'unknown' is not assignable to parameter of type 'Error'.
     await consoleFns.err(<Error>err);
   }
 })();
