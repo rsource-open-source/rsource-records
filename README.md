@@ -32,7 +32,7 @@ Shortlink for this repository: https://rsource.rqft.space/bot/
 \*not in use yet
 
 Requirements:
-- [Node](https://nodejs.org/)
+- [Node](https://nodejs.org/) v16
 - [Git](https://git-scm.com/)
 - [Prisma](https://prisma.io/)\*
 - [MySql](https://mysql.com/)\*
