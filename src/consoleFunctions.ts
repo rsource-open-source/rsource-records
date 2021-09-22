@@ -5,10 +5,10 @@ import {
 } from "detritus-client";
 
 import { IConfig } from "./interfaces";
-import * as colors from "colors";
+import chalk from "chalk";
 const config = require("../config.json") as IConfig;
 
-export enum ColorStringFns {
+export enum ChalkStringFns {
   STRIP = "strip",
   STRIPCOLORS = "stripColors",
 
@@ -55,18 +55,18 @@ export namespace consoleFns {
     title,
     message,
   }: {
-    color: ColorStringFns;
+    color: ChalkStringFns;
     title: string;
     message: Error | string;
   }) {
-    console.log(`${colors[color](`[${title}]`)} ${message}`);
-    //console.log(`${`[${title}]`} ${message} + ${color}`);
+    //@ts-ignore
+    console.log(`${chalk[color](`[${title}]`)} ${message}`);
   }
 
   export async function err(error: Error) {
     try {
       log({
-        color: ColorStringFns.RED,
+        color: ChalkStringFns.RED,
         title: "error",
         message: error,
       }).then(() => {
@@ -85,7 +85,7 @@ export namespace consoleFns {
     interactionCommandClient: InteractionCommandClient
   ) {
     log({
-      color: ColorStringFns.GREEN,
+      color: ChalkStringFns.GREEN,
       title: "run",
       message: "Importing and initializing commands",
     });
@@ -96,7 +96,7 @@ export namespace consoleFns {
         consoleFns.err(x);
       });
     log({
-      color: ColorStringFns.BLUE,
+      color: ChalkStringFns.BLUE,
       title: "import",
       message: "imported prefixed commands",
     });
@@ -105,7 +105,7 @@ export namespace consoleFns {
       .addMultipleIn("./commands", { subdirectories: true })
       .catch(err);
     log({
-      color: ColorStringFns.BLUE,
+      color: ChalkStringFns.BLUE,
       title: "import",
       message: "imported slash commands",
     });
@@ -114,7 +114,7 @@ export namespace consoleFns {
   export async function runShard(shardClient: ShardClient) {
     await shardClient.run();
     log({
-      color: ColorStringFns.GREEN,
+      color: ChalkStringFns.GREEN,
       title: "run",
       message: `Started shard ${shardClient.shardId}`,
     });
@@ -131,7 +131,7 @@ export namespace consoleFns {
       },
     });
     log({
-      color: ColorStringFns.GREEN,
+      color: ChalkStringFns.GREEN,
       title: "run",
       message: `Updated presence of shard ${shardClient.shardId}`,
     });
@@ -139,7 +139,7 @@ export namespace consoleFns {
 
   export async function runCC(commandClient: CommandClient) {
     log({
-      color: ColorStringFns.GRAY,
+      color: ChalkStringFns.GRAY,
       title: "run",
       message: `Starting CommandClient`,
     });
@@ -150,7 +150,7 @@ export namespace consoleFns {
     interactionCommandClient: InteractionCommandClient
   ) {
     log({
-      color: ColorStringFns.GREEN,
+      color: ChalkStringFns.GREEN,
       title: "run",
       message: `Starting InteractionCommandClient`,
     });

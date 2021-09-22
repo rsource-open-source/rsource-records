@@ -7,7 +7,7 @@ import {
 } from "detritus-client";
 
 //namespaces
-import { ColorStringFns, consoleFns } from "./consoleFunctions";
+import { ChalkStringFns, consoleFns } from "./consoleFunctions";
 
 //import * as StrafesNET from './typings/StrafesNET';
 
@@ -98,7 +98,7 @@ interactionCommandClient.add({
     await consoleFns.runCC(commandClient);
     await consoleFns.runICC(interactionCommandClient);
     await consoleFns.log({
-      color: ColorStringFns.MAGENTA,
+      color: ChalkStringFns.MAGENTA,
       title: "success",
       message: "rsource records online :3",
     });
