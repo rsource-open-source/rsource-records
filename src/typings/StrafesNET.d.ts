@@ -110,13 +110,34 @@ export interface Time {
 }
 
 export interface Rank {
+  /**
+   * Rank ID.
+   * > There are multiple ranks per user so using the same id for each one would be kinda wack
+   * itaname
+   */
   readonly ID: number;
+  /**
+   * Roblox user ID.
+   * https://www.roblox.com/users/{ID}/profile
+   */
   readonly User: number;
-  readonly Style: number;
+  readonly Style: StyleID;
+  /**
+   * @itzaname what the fuck is this
+   */
   readonly Mode: number;
-  readonly Game: number;
+  readonly Game: GameID;
+  /**
+   * 1 being the top.
+   */
   readonly Rank: number;
+  /**
+   * Skill percentage to the 15th digit, 0-1.
+   */
   readonly Skill: number;
+  /**
+   * Placement worldwide, 1 being the top.
+   */
   readonly Placement: number;
 }
 
