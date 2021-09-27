@@ -121,7 +121,7 @@ shardClient.on("messageCreate", async (payload) => {
     await consoleFns.runShard(shardClient);
     await consoleFns.importCommands(commandClient, interactionCommandClient);
     await consoleFns.runCC(commandClient);
-    //await consoleFns.runICC(interactionCommandClient);
+    await consoleFns.runICC(interactionCommandClient);
     await consoleFns.log({
       color: ChalkStringFns.MAGENTA,
       title: "success",
