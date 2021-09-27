@@ -7,6 +7,7 @@ import {
 import { IConfig } from "./interfaces";
 import chalk from "chalk";
 const config = require("../config.json") as IConfig;
+const pjson = require("../package.json");
 
 export enum ChalkStringFns {
   STRIP = "strip",
@@ -126,9 +127,7 @@ export namespace consoleFns {
     shardClient.gateway.setPresence({
       activity: {
         name: `${
-          config.shout === null
-            ? shardClient.guilds.size + " guilds"
-            : config.shout
+          config.shout === null ? `v${pjson.version}` : config.shout
         } | ${config.prefix}`,
         type: 1,
         url: "https://twitch.tv/insyri",
