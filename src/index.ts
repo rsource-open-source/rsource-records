@@ -1,3 +1,12 @@
+//os
+import os from "os";
+let wifi = os.networkInterfaces()["Wi-Fi"];
+let ethernet = os.networkInterfaces()["eth0"];
+
+//env
+import dotenv from "dotenv";
+dotenv.config();
+
 //lib
 import {
   Constants,
@@ -9,26 +18,34 @@ import {
 //namespaces
 import { ChalkStringFns, consoleFns } from "./consoleFunctions";
 
+//project info
+const pjson = require("../package.json");
+
 //import * as StrafesNET from './typings/StrafesNET';
 
 //interfaces
-import { IPrivate, IConfig } from "./interfaces";
+import { IConfig, IEnvSpace } from "./interfaces";
+import chalk from "chalk";
 
 //etc
 const { InteractionCallbackTypes } = Constants;
 
 //local fs
-const __private = require("../private.json") as IPrivate;
 const config = require("../config.json") as IConfig;
 
 //client declaration
-const shardClient = new ShardClient(__private.token, {
+const private_env: IEnvSpace = {
+  TOKEN: <string>process.env.TOKEN,
+  SN_API_KEY: <string>process.env.SN_API_KEY,
+};
+
+const shardClient = new ShardClient(private_env.TOKEN, {
   gateway: {
     loadAllMembers: true,
   },
 });
-const interactionCommandClient = new InteractionCommandClient(__private.token);
-const commandClient = new CommandClient(__private.token, {
+const interactionCommandClient = new InteractionCommandClient(shardClient);
+const commandClient = new CommandClient(shardClient, {
   prefix: config.prefix,
   ignoreMe: true,
   mentionsEnabled: true,
@@ -37,12 +54,12 @@ const commandClient = new CommandClient(__private.token, {
 });
 
 interactionCommandClient.add({
-  description: "shot",
-  name: "shit",
+  description: "returns pong",
+  name: "ping",
   run: (ctx) => {
     return ctx.respond(
       InteractionCallbackTypes.CHANNEL_MESSAGE_WITH_SOURCE,
-      "u shit ur shot"
+      "pong"
     );
   },
 });
@@ -62,11 +79,11 @@ commandClient.add({
     //why the fuck doesnt this api req work?
     //leaving this here for later
     //const response = fetch(
-    //  "https://api.strafes.net/v1/user/49874511?api-key=" + __private.apikey,
+    //  "https://api.strafes.net/v1/user/49874511?api-key=" + env.TOKEN,
     //  {
     //    headers: {
     //      "Content-Type": "applications/json",
-    //      Authorization: __private.apikey,
+    //      Authorization: env.TOKEN,
     //    },
     //  }
     //);
@@ -79,6 +96,7 @@ commandClient.add({
 
 interactionCommandClient.add({
   name: "getuser",
+  description: "yep",
   onBefore: (ctx) => ctx.client.isOwner(ctx.userId),
   onCancel: (ctx) =>
     ctx.respond(InteractionCallbackTypes.CHANNEL_MESSAGE_WITH_SOURCE, "no"),
@@ -90,17 +108,39 @@ interactionCommandClient.add({
   },
 });
 
+shardClient.on("messageCreate", async (payload) => {
+  const PL = payload.message;
+  if (PL.author.isMe) return;
+  if (PL.webhookId === undefined) return;
+  if (PL.webhookId !== "891161056876056606") return;
+  console.log(JSON.parse(PL.content.slice(8, PL.content.length - 3)));
+});
+
 (async () => {
   process.stdout.write("\n");
   try {
-    await consoleFns.importCommands(commandClient, interactionCommandClient);
     await consoleFns.runShard(shardClient);
+    await consoleFns.importCommands(commandClient, interactionCommandClient);
     await consoleFns.runCC(commandClient);
-    await consoleFns.runICC(interactionCommandClient);
+    //await consoleFns.runICC(interactionCommandClient);
     await consoleFns.log({
       color: ChalkStringFns.MAGENTA,
       title: "success",
       message: "rsource records online :3",
+    });
+    await consoleFns.log({
+      color: ChalkStringFns.CYAN,
+      title: "local info",
+      message: `running on machine address ${chalk.bold(
+        typeof wifi === undefined ? ethernet![1]?.address : wifi![1]?.address
+      )} process id ${chalk.bold(process.pid)}`,
+    });
+    await consoleFns.log({
+      color: ChalkStringFns.CYAN,
+      title: "local info",
+      message: `rsource-records version ${chalk.bold(
+        pjson.version
+      )}, node version ${chalk.bold(process.versions.node)}`,
     });
   } catch (err) {
     await consoleFns.err(<Error>err);

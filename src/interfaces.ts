@@ -3,7 +3,7 @@ export interface IConfig {
   shout: string | null;
 }
 
-export interface IPrivate {
-  token: string;
-  apikey: string;
+export interface IEnvSpace {
+  TOKEN: string;
+  SN_API_KEY: string;
 }

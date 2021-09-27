@@ -143,7 +143,7 @@ export namespace consoleFns {
 
   export async function runCC(commandClient: CommandClient) {
     log({
-      color: ChalkStringFns.GRAY,
+      color: ChalkStringFns.GREEN,
       title: "run",
       message: `Starting CommandClient`,
     });
@@ -160,4 +160,17 @@ export namespace consoleFns {
     });
     await interactionCommandClient.run();
   }
+}
+
+export interface StatisticWebhook {
+  prespeed: number;
+  playerid: number;
+  ssj: number[];
+  gain: number[]; // -> 100.00(%)
+  sync: number[]; // -> 100.00(%)
+  spj: number[]; // 0 -> inf; strafes per jump
+  speed: number[]; // 0 -> inf; current units/second
+  time: number; // elapsed time from start to finish
+  //array length will depend on how many jumps,
+  //7 jumps will generate arrays of 7 in length
 }
