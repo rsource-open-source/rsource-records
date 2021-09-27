@@ -66,7 +66,7 @@ After that, we can compile and run the code, here, we use nodemon to run out cod
 ```bash
 tsc # compiles
 # create a split terminal
-tsnode src/index.ts
+node dist
 ```
 
 Else:
