@@ -9,6 +9,8 @@
 ```
 <!--the font uses "slant"-->
 
+![](https://img.shields.io/codefactor/grade/github/rsource-open-source/rsource-records/main?logo=codefactor&style=for-the-badge)
+
 rsource-records is a TypeScript written Discord bot used to fetch content from the Roblox bhop & surf games via the [StrafesNET API](https://api.strafes.net/).
 This aims to be a bot that has many more features than just an API fetcher in the future.
 rsource-records uses the upcoming [detritus client](https://github.com/detritusjs/client) Discord API wrapper. 🎉🥳
@@ -32,7 +34,7 @@ Shortlink for this repository: https://rsource.rqft.space/bot/
 \*not in use yet
 
 Requirements:
-- [Node](https://nodejs.org/)
+- [Node](https://nodejs.org/) v16 Latest
 - [Git](https://git-scm.com/)
 - [Prisma](https://prisma.io/)\*
 - [MySql](https://mysql.com/)\*
@@ -64,7 +66,7 @@ After that, we can compile and run the code, here, we use nodemon to run out cod
 ```bash
 tsc # compiles
 # create a split terminal
-tsnode src/index.ts
+node dist
 ```
 
 Else:

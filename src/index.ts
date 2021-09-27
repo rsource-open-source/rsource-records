@@ -76,7 +76,6 @@ commandClient.add({
   onBefore: (ctx) => ctx.client.isOwner(ctx.userId),
   onCancel: (ctx) => ctx.reply("no"),
   run: async (ctx) => {
-    //why the fuck doesnt this api req work?
     //leaving this here for later
     //const response = fetch(
     //  "https://api.strafes.net/v1/user/49874511?api-key=" + env.TOKEN,
