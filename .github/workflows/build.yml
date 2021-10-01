@@ -20,3 +20,6 @@ jobs:
 
       - name: Build
         run: npm run build
+        
+      - name: Run
+        run: npm run LETSGOOOO
