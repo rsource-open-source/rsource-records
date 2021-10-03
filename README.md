@@ -22,8 +22,8 @@ rsource-records uses the upcoming [detritus client](https://github.com/detritusj
 Shortlink for this repository: https://rsource.rqft.space/bot/
 
 ## The Future
-- rsource-records will be hosted on a DigitalOcean Droplet
-- Heavy use of Prisma and PostgreSQL database
+- DigitalOcean Droplet hosting
+- Prisma ORM and PostgreSQL for database interaction
 - Docker, maybe
 - FFMPEG
 
