@@ -71,7 +71,7 @@ interactionCommandClient.add({
 commandClient.add({
   name: "ping",
   run: (ctx) => {
-    ctx.reply("").catch((x) => errorToLogs(x, shardClient));
+    ctx.reply("pong").catch((x) => errorToLogs(x, shardClient));
   },
 });
 
