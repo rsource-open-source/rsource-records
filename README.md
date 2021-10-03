@@ -34,10 +34,10 @@ Shortlink for this repository: https://rsource.rqft.space/bot/
 \*not in use yet
 
 Requirements:
-- [Node](https://nodejs.org/) v16 Latest
+- [Node](https://nodejs.org/) v14 (v16 should work)
 - [Git](https://git-scm.com/)
 - [Prisma](https://prisma.io/)\*
-- [MySql](https://mysql.com/)\*
+- [PostgreSql](https://postgresql.org/)\*
 
 What we use (optional services):
 - Code editor/IDE: [VSCode](https://code.visualstudio.com/)

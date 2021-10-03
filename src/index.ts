@@ -3,6 +3,10 @@ import os from "os";
 let wifi = os.networkInterfaces()["Wi-Fi"];
 let ethernet = os.networkInterfaces()["eth0"];
 
+//utils
+
+import { errorToLogs } from "./utils";
+
 //env
 import dotenv from "dotenv";
 dotenv.config();
@@ -67,7 +71,7 @@ interactionCommandClient.add({
 commandClient.add({
   name: "ping",
   run: (ctx) => {
-    ctx.reply("pong");
+    ctx.reply("").catch((x) => errorToLogs(x, shardClient));
   },
 });
 
@@ -76,7 +80,6 @@ commandClient.add({
   onBefore: (ctx) => ctx.client.isOwner(ctx.userId),
   onCancel: (ctx) => ctx.reply("no"),
   run: async (ctx) => {
-    //leaving this here for later
     //const response = fetch(
     //  "https://api.strafes.net/v1/user/49874511?api-key=" + env.TOKEN,
     //  {
@@ -100,10 +103,7 @@ interactionCommandClient.add({
   onCancel: (ctx) =>
     ctx.respond(InteractionCallbackTypes.CHANNEL_MESSAGE_WITH_SOURCE, "no"),
   run: async (ctx) => {
-    await ctx.respond(
-      InteractionCallbackTypes.CHANNEL_MESSAGE_WITH_SOURCE,
-      "test"
-    );
+    await ctx.respond(InteractionCallbackTypes.CHANNEL_MESSAGE_WITH_SOURCE, "");
   },
 });
 
@@ -121,7 +121,7 @@ shardClient.on("messageCreate", async (payload) => {
     await consoleFns.runShard(shardClient);
     await consoleFns.importCommands(commandClient, interactionCommandClient);
     await consoleFns.runCC(commandClient);
-    await consoleFns.runICC(interactionCommandClient);
+    //await consoleFns.runICC(interactionCommandClient);
     await consoleFns.log({
       color: ChalkStringFns.MAGENTA,
       title: "success",
