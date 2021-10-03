@@ -3,6 +3,7 @@ import {
   CommandClient,
   InteractionCommandClient,
 } from "detritus-client";
+import { exec } from "child_process";
 
 import { IConfig } from "./interfaces";
 import chalk from "chalk";
@@ -51,6 +52,15 @@ export enum ChalkStringFns {
 }
 
 export namespace consoleFns {
+  export const getBranch = () =>
+    new Promise((resolve, reject) => {
+      return exec("git rev-parse --abbrev-ref HEAD", (err, stdout, _) => {
+        if (err) consoleFns.err(err);
+        else if (stdout === undefined) reject("lol");
+        else if (typeof stdout === "string") resolve(stdout.trim());
+      });
+    });
+
   export async function log({
     color,
     title,
@@ -124,11 +134,19 @@ export namespace consoleFns {
       message: `Started shard ${shardClient.shardId}`,
     });
 
+    const branch = await getBranch();
+
     shardClient.gateway.setPresence({
       activity: {
         name: `${
-          config.shout === null ? `v${pjson.version}` : config.shout
-        } | ${config.prefix}`,
+          config.shout === null
+            ? `v${pjson.version} | ${config.prefix} | [${
+                branch == "main" || branch === "dev"
+                  ? "" + branch
+                  : "dev." + branch
+              }]`
+            : config.shout
+        }`,
         type: 1,
         url: "https://twitch.tv/insyri",
       },

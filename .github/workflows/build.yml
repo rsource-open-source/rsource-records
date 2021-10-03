@@ -1,3 +1,5 @@
+# This workflow checks for compiling errors.
+
 name: build
 
 on:
