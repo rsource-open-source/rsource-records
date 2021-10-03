@@ -71,7 +71,7 @@ interactionCommandClient.add({
 commandClient.add({
   name: "ping",
   run: (ctx) => {
-    ctx.reply("").catch((x) => errorToLogs(x, shardClient));
+    ctx.reply("pong").catch((x) => errorToLogs(x, shardClient));
   },
 });
 
@@ -132,7 +132,7 @@ shardClient.on("messageCreate", async (payload) => {
       title: "local info",
       message: `running on machine address ${chalk.bold(
         typeof wifi === undefined ? ethernet![1]?.address : wifi![1]?.address
-      )} process id ${chalk.bold(process.pid)}`,
+      )} branch ${chalk.bold(await consoleFns.getBranch())}`,
     });
     await consoleFns.log({
       color: ChalkStringFns.CYAN,
