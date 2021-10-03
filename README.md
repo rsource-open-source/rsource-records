@@ -24,9 +24,8 @@ rsource-records uses the upcoming [detritus client](https://github.com/detritusj
 Shortlink for this repository: https://rsource.rqft.space/bot/
 
 ## The Future
-
-- rsource-records will be hosted on a DigitalOcean Droplet
-- Heavy use of Prisma and MySql database
+- DigitalOcean Droplet hosting
+- Prisma ORM and PostgreSQL for database interaction
 - Docker, maybe
 - FFMPEG
 
@@ -37,11 +36,10 @@ Shortlink for this repository: https://rsource.rqft.space/bot/
 \*not in use yet
 
 Requirements:
-
-- [Node](https://nodejs.org/) v16 Latest
+- [Node](https://nodejs.org/) v14 (v16 should work)
 - [Git](https://git-scm.com/)
 - [Prisma](https://prisma.io/)\*
-- [MySql](https://mysql.com/)\*
+- [PostgreSql](https://postgresql.org/)\*
 
 What we use (optional services):
 
@@ -81,5 +79,3 @@ tsc -w # compiles and watches for saves
 # create a split terminal
 nodemon dist
 ```
-
-<!--dev-->
