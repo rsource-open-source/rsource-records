@@ -1,12 +1,14 @@
 # rsource-records
+
 ```
-                                                                          __    
+                                                                          __
    ______________  __  _______________     ________  _________  _________/ /____
   / ___/ ___/ __ \/ / / / ___/ ___/ _ \   / ___/ _ \/ ___/ __ \/ ___/ __  / ___/
- / /  (__  ) /_/ / /_/ / /  / /__/  __/  / /  /  __/ /__/ /_/ / /  / /_/ (__  ) 
-/_/  /____/\____/\__,_/_/   \___/\___/  /_/   \___/\___/\____/_/   \__,_/____/  
-                                                                                
+ / /  (__  ) /_/ / /_/ / /  / /__/  __/  / /  /  __/ /__/ /_/ / /  / /_/ (__  )
+/_/  /____/\____/\__,_/_/   \___/\___/  /_/   \___/\___/\____/_/   \__,_/____/
+
 ```
+
 <!--the font uses "slant"-->
 
 ![](https://img.shields.io/codefactor/grade/github/rsource-open-source/rsource-records/main?logo=codefactor&style=for-the-badge)
@@ -15,13 +17,14 @@ rsource-records is a TypeScript written Discord bot used to fetch content from t
 This aims to be a bot that has many more features than just an API fetcher in the future.
 rsource-records uses the upcoming [detritus client](https://github.com/detritusjs/client) Discord API wrapper. 🎉🥳
 
-***This is still in its early development phase.***
+**_This is still in its early development phase._**
 
 [Project Board](https://github.com/orgs/rsource-open-source/projects/1)
 
 Shortlink for this repository: https://rsource.rqft.space/bot/
 
 ## The Future
+
 - rsource-records will be hosted on a DigitalOcean Droplet
 - Heavy use of Prisma and MySql database
 - Docker, maybe
@@ -34,12 +37,14 @@ Shortlink for this repository: https://rsource.rqft.space/bot/
 \*not in use yet
 
 Requirements:
+
 - [Node](https://nodejs.org/) v16 Latest
 - [Git](https://git-scm.com/)
 - [Prisma](https://prisma.io/)\*
 - [MySql](https://mysql.com/)\*
 
 What we use (optional services):
+
 - Code editor/IDE: [VSCode](https://code.visualstudio.com/)
 - [nodemon](https://nodemon.io/)
 
@@ -76,3 +81,5 @@ tsc -w # compiles and watches for saves
 # create a split terminal
 nodemon dist
 ```
+
+<!--dev-->
