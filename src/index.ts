@@ -18,6 +18,8 @@ import {
   CommandClient,
   ShardClient,
 } from "detritus-client";
+import { exec } from "child_process";
+//import * as http from "http";
 
 //namespaces
 import { ChalkStringFns, consoleFns } from "./consoleFunctions";
@@ -76,23 +78,29 @@ commandClient.add({
 });
 
 commandClient.add({
-  name: "getuser1",
+  name: "getuser",
   onBefore: (ctx) => ctx.client.isOwner(ctx.userId),
   onCancel: (ctx) => ctx.reply("no"),
   run: async (ctx) => {
-    //const response = fetch(
-    //  "https://api.strafes.net/v1/user/49874511?api-key=" + env.TOKEN,
-    //  {
-    //    headers: {
-    //      "Content-Type": "applications/json",
-    //      Authorization: env.TOKEN,
-    //    },
-    //  }
-    //);
-    //  .then((res) => console.log("resolved", res.json()))
-    //  .then((data) => console.log("data", data))
-    //  .catch((err) => console.error("error", err));
-    await ctx.reply("data");
+    let arg = ctx.content.split(" ")[1];
+    const msg = await ctx.reply("Fetching results...");
+    const req_ = () =>
+      new Promise((resolve, reject) => {
+        return exec(
+          `curl -X GET "https://api.strafes.net/v1/user/${arg}" -H  "accept: application/json" -H  "api-key: ${private_env.SN_API_KEY}"`,
+          (err, stdout, _) => {
+            if (err) consoleFns.err(err);
+            else if (stdout === undefined) reject("lol");
+            else if (typeof stdout === "string") resolve(stdout.trim());
+          }
+        );
+      });
+    const responseRaw = await req_();
+    //const response = JSON.parse(<string>responseRaw);
+    //console.log(response);
+    (await ctx.channel?.fetchMessage(msg.id))!.edit(
+      `\`\`\`json\n${responseRaw}\`\`\``
+    );
   },
 });
 
