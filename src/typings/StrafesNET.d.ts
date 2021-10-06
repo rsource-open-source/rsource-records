@@ -20,6 +20,8 @@ export enum ApiErrorMessages {
    * This returns a 404 HTTP code.
    */
   NOT_FOUND = "Not Found",
+
+  BAD_REQUEST = "Bad Request",
 }
 
 export enum GameID {

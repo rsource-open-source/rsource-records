@@ -9,3 +9,5 @@ export async function errorToLogs(err: Error, shardClient: ShardClient) {
     },
   });
 }
+
+export const numregex = /^\d+$/; //or /^[0-9]+$/, depends which is faster

@@ -39,7 +39,8 @@ Shortlink for this repository: https://rsource.rqft.space/bot/
 \*not in use yet
 
 Requirements:
-- [Node](https://nodejs.org/) v14/v16
+
+- [Node](https://nodejs.org/) v16.10.0
 - [Git](https://git-scm.com/)
 - [Prisma](https://prisma.io/)\*
 - [PostgreSQL](https://postgresql.org/)\*
