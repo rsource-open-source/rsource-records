@@ -1,35 +1,29 @@
 //os
+import chalk from "chalk";
+//lib
+import {
+  CommandClient,
+  Constants,
+  InteractionCommandClient,
+  ShardClient,
+} from "detritus-client";
+//env
+import dotenv from "dotenv";
 import os from "os";
+//namespaces
+import { ChalkStringFns, consoleFns } from "./consoleFunctions";
+//import * as StrafesNET from './typings/StrafesNET';
+//interfaces
+import { IConfig, IEnvSpace } from "./interfaces";
+//utils
+import { errorToLogs } from "./utils";
 let wifi = os.networkInterfaces()["Wi-Fi"];
 let ethernet = os.networkInterfaces()["eth0"];
 
-//utils
-
-import { errorToLogs } from "./utils";
-
-//env
-import dotenv from "dotenv";
 dotenv.config();
-
-//lib
-import {
-  Constants,
-  InteractionCommandClient,
-  CommandClient,
-  ShardClient,
-} from "detritus-client";
-
-//namespaces
-import { ChalkStringFns, consoleFns } from "./consoleFunctions";
 
 //project info
 const pjson = require("../package.json");
-
-//import * as StrafesNET from './typings/StrafesNET';
-
-//interfaces
-import { IConfig, IEnvSpace } from "./interfaces";
-import chalk from "chalk";
 
 //etc
 const { InteractionCallbackTypes } = Constants;
@@ -43,13 +37,15 @@ const private_env: IEnvSpace = {
   SN_API_KEY: <string>process.env.SN_API_KEY,
 };
 
-const shardClient = new ShardClient(private_env.TOKEN, {
+export const shardClient = new ShardClient(private_env.TOKEN, {
   gateway: {
     loadAllMembers: true,
   },
 });
-const interactionCommandClient = new InteractionCommandClient(shardClient);
-const commandClient = new CommandClient(shardClient, {
+export const interactionCommandClient = new InteractionCommandClient(
+  shardClient
+);
+export const commandClient = new CommandClient(shardClient, {
   prefix: config.prefix,
   ignoreMe: true,
   mentionsEnabled: true,
