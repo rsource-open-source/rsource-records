@@ -78,19 +78,6 @@ export namespace consoleFns {
     );
   }
 
-  export async function logInfo(
-    message: Error | string,
-    title?: string,
-    color?: ChalkStringFns
-  ) {
-    console.log(
-      //@ts-ignore
-      `${chalk.gray(`[${new Date().toLocaleTimeString("en-US")}]`)} ${chalk[
-        color ? color : ChalkStringFns.UNDERLINE
-      ](`[${title ? title : "log"}]`)} ${message}`
-    );
-  }
-
   export async function err(error: Error) {
     try {
       log({
