@@ -10,12 +10,9 @@
 ```
 
 <!--the font uses "slant"-->
+[![CodeFactor](https://www.codefactor.io/repository/github/rsource-open-source/rsource-records/badge)](https://www.codefactor.io/repository/github/rsource-open-source/rsource-records)
 
-![](https://img.shields.io/codefactor/grade/github/rsource-open-source/rsource-records/main?logo=codefactor&style=for-the-badge)
-
-rsource-records is a TypeScript written Discord bot used to fetch content from the Roblox bhop & surf games via the [StrafesNET API](https://api.strafes.net/).
-This aims to be a bot that has many more features than just an API fetcher in the future.
-rsource-records uses the upcoming [detritus client](https://github.com/detritusjs/client) Discord API wrapper. 🎉🥳
+rsource-records is a TypeScript written Discord bot that utilizes [detritus](https://github.com/detritusjs/client). This bot is made to fetch content from the Roblox bhop & surf games via the [StrafesNET API](https://api.strafes.net/). This aims to be a bot that has many more features than just an API fetcher in the future.
 
 **_This is still in its early development phase._**
 
@@ -23,7 +20,7 @@ Note: this project uses multiple branches, each are titled for their purpose. Ou
 
 [Project Board](https://github.com/orgs/rsource-open-source/projects/1)
 
-Shortlink for this repository: https://rsource.rqft.space/bot/
+Shortlink for this repository: https://rsource.rqft.space/records/
 
 ## The Future
 
@@ -40,7 +37,7 @@ Shortlink for this repository: https://rsource.rqft.space/bot/
 
 Requirements:
 
-- [Node](https://nodejs.org/) v16.10.0
+- [Node](https://nodejs.org/) v16
 - [Git](https://git-scm.com/)
 - [Prisma](https://prisma.io/)\*
 - [PostgreSQL](https://postgresql.org/)\*
