@@ -13,6 +13,9 @@ import os from "os";
 //namespaces
 import { ChalkStringFns, consoleFns } from "./consoleFunctions";
 //import * as StrafesNET from './typings/StrafesNET';
+
+import fetch from "node-fetch";
+
 //interfaces
 import { IConfig, IEnvSpace } from "./interfaces";
 //utils
@@ -73,22 +76,19 @@ commandClient.add({
 
 commandClient.add({
   name: "getuser1",
-  onBefore: (ctx) => ctx.client.isOwner(ctx.userId),
-  onCancel: (ctx) => ctx.reply("no"),
   run: async (ctx) => {
-    //const response = fetch(
-    //  "https://api.strafes.net/v1/user/49874511?api-key=" + env.TOKEN,
-    //  {
-    //    headers: {
-    //      "Content-Type": "applications/json",
-    //      Authorization: env.TOKEN,
-    //    },
-    //  }
-    //);
-    //  .then((res) => console.log("resolved", res.json()))
-    //  .then((data) => console.log("data", data))
-    //  .catch((err) => console.error("error", err));
-    await ctx.reply("data");
+    const response = await fetch(
+      "https://api.strafes.net/v1/user/49874511?api-key=" +
+        private_env.SN_API_KEY,
+      {
+        headers: {
+          "Content-Type": "applications/json",
+          Authorization: private_env.SN_API_KEY,
+        },
+      }
+    );
+    const data = await response.json();
+    await ctx.reply(`\`\`\`json\n${JSON.stringify(data)}\`\`\``);
   },
 });
 
@@ -115,7 +115,7 @@ shardClient.on("messageCreate", async (payload) => {
   process.stdout.write("\n");
   try {
     await consoleFns.runShard(shardClient);
-    await consoleFns.importCommands(commandClient, interactionCommandClient);
+    //await consoleFns.importCommands(commandClient, interactionCommandClient);
     await consoleFns.runCC(commandClient);
     //await consoleFns.runICC(interactionCommandClient);
     await consoleFns.log({
