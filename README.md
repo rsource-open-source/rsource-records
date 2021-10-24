@@ -88,3 +88,9 @@ tsc -w # compiles and watches for saves
 # create a split/seperate terminal
 nodemon dist
 ```
+
+This isn't required, but it is encouraged to clean up the throwaway files.
+
+```bash
+rm .env.example
+```
