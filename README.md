@@ -10,6 +10,7 @@
 ```
 
 <!--the font uses "slant"-->
+
 [![CodeFactor](https://www.codefactor.io/repository/github/rsource-open-source/rsource-records/badge)](https://www.codefactor.io/repository/github/rsource-open-source/rsource-records)
 
 rsource-records is a TypeScript written Discord bot that utilizes [detritus](https://github.com/detritusjs/client). This bot is made to fetch content from the Roblox bhop & surf games via the [StrafesNET API](https://api.strafes.net/). This aims to be a bot that has many more features than just an API fetcher in the future.
@@ -68,7 +69,7 @@ Populate the `.env` and the `config.json` file with the applicable interfaces [h
 After that, we can compile and run the code, here, we use nodemon to run out code everytime we save a file, **if you don't want to use nodemon** run the according:
 
 ```bash
-tsc # compiles
+tsc # compiles OR npm run build
 # create a split/seperate terminal
 node dist
 ```

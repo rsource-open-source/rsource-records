@@ -1,5 +1,5 @@
 //import { checkRover } from "../typeChecks";
-import HttpStatusCode from "./HttpStatusCode";
+import { HTTPStatusCodes } from "detritus-rest/lib/constants";
 
 export module rover {
   export class ApiResponse {
@@ -22,7 +22,7 @@ export module rover {
   }
 
   export class ApiError extends ApiResponse {
-    errorCode!: HttpStatusCode;
+    errorCode!: HTTPStatusCodes;
     error!: string;
 
     constructor(response: any) {
@@ -84,7 +84,7 @@ export module roblox {
   export class ApiError {
     errors!: [
       {
-        code: HttpStatusCode;
+        code: HTTPStatusCodes;
         message: string;
       }
     ];

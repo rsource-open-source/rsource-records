@@ -1,4 +1,4 @@
-import HttpStatusCode from "./HttpStatusCode";
+import { HTTPStatusCodes } from "../node_modules/detritus-rest/lib/constants";
 //https://gist.github.com/scokmen/f813c904ef79022e84ab2409574d1b45
 //https://api.strafes.net/v1
 
@@ -54,7 +54,7 @@ export enum UserState {
  * An error has occured! This is what it would look like.
  */
 export interface ApiError {
-  readonly code?: HttpStatusCode;
+  readonly code?: HTTPStatusCodes;
   readonly message: ApiErrorMessages;
   /**
    * A UUID for tracing errors (idfk what this is).
