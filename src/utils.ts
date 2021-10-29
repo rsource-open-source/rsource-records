@@ -1,6 +1,4 @@
-import { Command, ShardClient } from "detritus-client";
-import { ArgumentType } from "detritus-client/lib/command";
-import { commandClient } from ".";
+import { ShardClient } from "detritus-client";
 
 export async function errorToLogs(err: Error, shardClient: ShardClient) {
   await shardClient.rest.createMessage("771779440342466580", {
