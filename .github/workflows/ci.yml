@@ -1,8 +1,7 @@
-# This workflow checks for compiling errors.
-
-name: build
+name: CI
 
 on:
+  pull_request:
   push:
   workflow_dispatch:
 
@@ -11,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 16.x
+      - name: Setup Node.js 16.x
         uses: actions/setup-node@main
         with:
           node-version: 16
           check-latest: true
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm ci
 
       - name: Build

@@ -1,29 +1,34 @@
 //os
-import chalk from "chalk";
-//lib
-import {
-  CommandClient,
-  Constants,
-  InteractionCommandClient,
-  ShardClient,
-} from "detritus-client";
+//import os from "os";
+//let wifi = os.networkInterfaces()["Wi-Fi"];
+//let ethernet = os.networkInterfaces()["eth0"];
+
+//utils
+import { errorToLogs /*inJson, numregex*/ } from "./utils";
+
 //env
 import dotenv from "dotenv";
-import os from "os";
+dotenv.config();
+
+//detritus lib
+import {
+  Constants,
+  InteractionCommandClient,
+  CommandClient,
+  ShardClient,
+} from "detritus-client";
+
 //namespaces
 import { ChalkStringFns, consoleFns } from "./consoleFunctions";
-//import * as StrafesNET from './typings/StrafesNET';
-//interfaces
-import { IConfig, IEnvSpace } from "./interfaces";
-//utils
-import { errorToLogs } from "./utils";
-let wifi = os.networkInterfaces()["Wi-Fi"];
-let ethernet = os.networkInterfaces()["eth0"];
-
-dotenv.config();
 
 //project info
 const pjson = require("../package.json");
+
+//import * as StrafesNET from './typings/StrafesNET';
+
+//interfaces
+import { IConfig, IEnvSpace } from "./interfaces";
+import chalk from "chalk";
 
 //etc
 const { InteractionCallbackTypes } = Constants;
@@ -37,15 +42,13 @@ const private_env: IEnvSpace = {
   SN_API_KEY: <string>process.env.SN_API_KEY,
 };
 
-export const shardClient = new ShardClient(private_env.TOKEN, {
+const shardClient = new ShardClient(private_env.TOKEN, {
   gateway: {
     loadAllMembers: true,
   },
 });
-export const interactionCommandClient = new InteractionCommandClient(
-  shardClient
-);
-export const commandClient = new CommandClient(shardClient, {
+const interactionCommandClient = new InteractionCommandClient(shardClient);
+const commandClient = new CommandClient(shardClient, {
   prefix: config.prefix,
   ignoreMe: true,
   mentionsEnabled: true,
@@ -72,34 +75,33 @@ commandClient.add({
 });
 
 commandClient.add({
-  name: "getuser1",
-  onBefore: (ctx) => ctx.client.isOwner(ctx.userId),
-  onCancel: (ctx) => ctx.reply("no"),
-  run: async (ctx) => {
-    //const response = fetch(
-    //  "https://api.strafes.net/v1/user/49874511?api-key=" + env.TOKEN,
-    //  {
-    //    headers: {
-    //      "Content-Type": "applications/json",
-    //      Authorization: env.TOKEN,
-    //    },
-    //  }
-    //);
-    //  .then((res) => console.log("resolved", res.json()))
-    //  .then((data) => console.log("data", data))
-    //  .catch((err) => console.error("error", err));
-    await ctx.reply("data");
-  },
-});
-
-interactionCommandClient.add({
   name: "getuser",
-  description: "yep",
-  onBefore: (ctx) => ctx.client.isOwner(ctx.userId),
-  onCancel: (ctx) =>
-    ctx.respond(InteractionCallbackTypes.CHANNEL_MESSAGE_WITH_SOURCE, "no"),
   run: async (ctx) => {
-    await ctx.respond(InteractionCallbackTypes.CHANNEL_MESSAGE_WITH_SOURCE, "");
+    const msg = await ctx.reply("Reading message");
+    let arg = ctx.content.split(" ")[1];
+    if (!arg)
+      return (await ctx.channel?.fetchMessage(msg.id))!.edit(
+        "No argument found."
+      );
+    if (arg.match(/^\w+$/) == null) {
+      return (await ctx.channel?.fetchMessage(msg.id))!.edit(
+        "Alphanumeric characters only + `_` (REGEXP: `/^\\w+$/`)."
+      );
+    }
+    const response = await fetch(
+      `https://api.strafes.net/v1/user/${arg}?api-key=` +
+        private_env.SN_API_KEY,
+      {
+        headers: {
+          "Content-Type": "applications/json",
+          Authorization: private_env.SN_API_KEY,
+        },
+      }
+    );
+    const data = await response.json();
+    return (await ctx.channel?.fetchMessage(msg.id))!.edit(
+      `\`\`\`json\n${JSON.stringify(data)}\`\`\``
+    );
   },
 });
 
@@ -123,13 +125,13 @@ shardClient.on("messageCreate", async (payload) => {
       title: "success",
       message: "rsource records online :3",
     });
-    await consoleFns.log({
-      color: ChalkStringFns.CYAN,
-      title: "local info",
-      message: `running on machine address ${chalk.bold(
-        typeof wifi === undefined ? ethernet![1]?.address : wifi![1]?.address
-      )} branch ${chalk.bold(await consoleFns.getBranch())}`,
-    });
+    //await consoleFns.log({
+    //  color: ChalkStringFns.CYAN,
+    //  title: "local info",
+    //  message: `running on machine address ${chalk.bold(
+    //    typeof wifi === undefined ? ethernet![1]?.address : wifi![1]?.address
+    //  )} branch ${chalk.bold(await consoleFns.getBranch())}`,
+    //});
     await consoleFns.log({
       color: ChalkStringFns.CYAN,
       title: "local info",
