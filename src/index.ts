@@ -5,27 +5,21 @@
 
 //utils
 import { errorToLogs /*inJson, numregex*/ } from "./utils";
-//import { checkRover /*checkBloxlink*/ } from "./typeChecks";
 
 //env
 import dotenv from "dotenv";
 dotenv.config();
 
-//lib
+//detritus lib
 import {
   Constants,
   InteractionCommandClient,
   CommandClient,
   ShardClient,
 } from "detritus-client";
-//import { exec } from "child_process";
-//const p = require("pariah/dist");
-//new p.SomeRandomAPI().raccoon()
-//import getBloxlinkUser from "bloxlink";
 
 //namespaces
 import { ChalkStringFns, consoleFns } from "./consoleFunctions";
-//import { rover /*bloxlink*/ } from "./typingsAndClasses/Roblox2DiscordApis";
 
 //project info
 const pjson = require("../package.json");
@@ -82,11 +76,9 @@ commandClient.add({
 
 commandClient.add({
   name: "getuser",
-  //onBefore: (ctx) => ctx.client.isOwner(ctx.userId),
-  //onCancel: (ctx) => ctx.reply("no"),
   run: async (ctx) => {
-    let arg = ctx.content.split(" ")[1];
     const msg = await ctx.reply("Reading message");
+    let arg = ctx.content.split(" ")[1];
     if (!arg)
       return (await ctx.channel?.fetchMessage(msg.id))!.edit(
         "No argument found."
@@ -95,9 +87,9 @@ commandClient.add({
       return (await ctx.channel?.fetchMessage(msg.id))!.edit(
         "Alphanumeric characters only + `_` (REGEXP: `/^\\w+$/`)."
       );
-    } // santization brought up by fiveman1, thank
+    }
     const response = await fetch(
-      "https://api.strafes.net/v1/user/49874511?api-key=" +
+      `https://api.strafes.net/v1/user/${arg}?api-key=` +
         private_env.SN_API_KEY,
       {
         headers: {
@@ -110,17 +102,6 @@ commandClient.add({
     return (await ctx.channel?.fetchMessage(msg.id))!.edit(
       `\`\`\`json\n${JSON.stringify(data)}\`\`\``
     );
-  },
-});
-
-interactionCommandClient.add({
-  name: "getuser",
-  description: "yep",
-  onBefore: (ctx) => ctx.client.isOwner(ctx.userId),
-  onCancel: (ctx) =>
-    ctx.respond(InteractionCallbackTypes.CHANNEL_MESSAGE_WITH_SOURCE, "no"),
-  run: async (ctx) => {
-    await ctx.respond(InteractionCallbackTypes.CHANNEL_MESSAGE_WITH_SOURCE, "");
   },
 });
 

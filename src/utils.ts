@@ -10,7 +10,7 @@ export async function errorToLogs(err: Error, shardClient: ShardClient) {
   });
 }
 
-export const numregex = /^\d+$/; //or /^[0-9]+$/, depends which is faster
+export const numregex = /^\d+$/;
 
 export function inJson(z: object | string): string {
   if (typeof z === "string") z = JSON.stringify(z);

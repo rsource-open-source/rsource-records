@@ -1,10 +1,8 @@
 /*
 import { ShardClient } from 'detritus-client';
-import * as StrafesNET from './typings/StrafesNET';
+import * as StrafesNET from './typingsAndClasses/StrafesNET';
 
-async function getUser(args: StrafesNET.User, shardClient: ShardClient) {
-  client.
+export async function getUser(args: string, shardClient: ShardClient) {
+  
 }
-
-export default {}
 */

@@ -25,12 +25,16 @@
     "prisma": "^3.1.1"
   },
   "dependencies": {
+    "@ffmpeg/core": "^0.10.0",
+    "@ffmpeg/ffmpeg": "^0.10.1",
+    "@typescript-eslint/typescript-estree": "^5.2.0",
     "bloxlink": "^1.6.0",
     "chalk": "^4.1.2",
     "detritus-client": "^0.16.3",
     "detritus-rest": "^0.7.0",
     "dotenv": "^10.0.0",
     "imagescript": "^1.2.9",
+    "toml": "^3.0.0",
     "typescript": "^4.4.3"
   }
 }
