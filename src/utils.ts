@@ -17,6 +17,7 @@ export const numregex = /^\d+$/;
 export function inJson(z: object | string): string {
   if (typeof z === "string") z = JSON.stringify(z);
   return `\`\`\`json\n${z}\`\`\``;
+}
 export function bitfieldToArray<T>(bitfield: number | bigint, array: T[]): T[];
 export function bitfieldToArray(bitfield: number | bigint, array: any[]): any[];
 export function bitfieldToArray(bitfield: number | bigint, array: any[]) {
