@@ -1,6 +1,6 @@
 {
   "name": "rsource-records",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "TypeScript written discord bot that uses the StrafesNET api to send content from the Roblox bhop and surf games.",
   "main": "src/index.ts",
   "scripts": {
@@ -20,15 +20,21 @@
   },
   "homepage": "https://github.com/rsource-open-source/rsource-records#readme",
   "devDependencies": {
-    "node-fetch": "^2.6.5",
-    "nodemon": "^2.0.14-alpha.1",
-    "prisma": "^3.2.1"
+    "nodemon": "^2.0.14",
+    "pariah": "^1.0.0",
+    "prisma": "^3.1.1"
   },
   "dependencies": {
+    "@ffmpeg/core": "^0.10.0",
+    "@ffmpeg/ffmpeg": "^0.10.1",
+    "@typescript-eslint/typescript-estree": "^5.2.0",
+    "bloxlink": "^1.6.0",
     "chalk": "^4.1.2",
     "detritus-client": "^0.16.3",
+    "detritus-rest": "^0.7.0",
     "dotenv": "^10.0.0",
     "imagescript": "^1.2.9",
+    "toml": "^3.0.0",
     "typescript": "^4.4.3"
   }
 }
