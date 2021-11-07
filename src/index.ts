@@ -27,7 +27,7 @@ const pjson = require("../package.json");
 //import * as StrafesNET from './typings/StrafesNET';
 
 //interfaces
-import { IConfig, IEnvSpace } from "./interfaces";
+import { IConfig } from "./interfaces";
 import chalk from "chalk";
 
 //etc
@@ -37,12 +37,12 @@ const { InteractionCallbackTypes } = Constants;
 const config = require("../config.json") as IConfig;
 
 //client declaration
-const private_env: IEnvSpace = {
+const { TOKEN, SN_API_KEY } = {
   TOKEN: <string>process.env.TOKEN,
   SN_API_KEY: <string>process.env.SN_API_KEY,
 };
 
-const shardClient = new ShardClient(private_env.TOKEN, {
+const shardClient = new ShardClient(TOKEN, {
   gateway: {
     loadAllMembers: true,
   },
@@ -89,12 +89,11 @@ commandClient.add({
       );
     }
     const response = await fetch(
-      `https://api.strafes.net/v1/user/${arg}?api-key=` +
-        private_env.SN_API_KEY,
+      `https://api.strafes.net/v1/user/${arg}?api-key=` + SN_API_KEY,
       {
         headers: {
           "Content-Type": "applications/json",
-          Authorization: private_env.SN_API_KEY,
+          Authorization: SN_API_KEY,
         },
       }
     );
