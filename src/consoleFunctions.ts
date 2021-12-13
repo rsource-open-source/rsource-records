@@ -71,10 +71,10 @@ export namespace consoleFns {
     message: Error | string;
   }) {
     console.log(
-      //@ts-ignore
-      `${chalk.gray(`[${new Date().toLocaleTimeString("en-US")}]`)} ${chalk[
-        color
-      ](`[${title}]`)} ${message}`
+      `${chalk.gray(
+        `[${new Date().toLocaleTimeString("en-US")}] ${chalk.blue(pjson.name)}`
+        //@ts-ignore
+      )} ${chalk[color](`[${title}]`)} ${message}`
     );
   }
 
