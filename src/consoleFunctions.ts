@@ -3,10 +3,10 @@ import {
   CommandClient,
   InteractionCommandClient,
 } from "detritus-client";
-import { exec } from "child_process";
+
+import { rConsole } from "rsource-utils";
 
 import { IConfig } from "./interfaces";
-import chalk from "chalk";
 const config = require("../config.json") as IConfig;
 const pjson = require("../package.json");
 
@@ -52,56 +52,40 @@ export enum ChalkStringFns {
 }
 
 export namespace consoleFns {
-  export const getBranch = () =>
-    new Promise((resolve, reject) => {
-      return exec("git rev-parse --abbrev-ref HEAD", (err, stdout, _) => {
-        if (err) consoleFns.err(err);
-        else if (stdout === undefined) reject("lol");
-        else if (typeof stdout === "string") resolve(stdout.trim());
-      });
-    });
+  // export async function log({
+  //   color,
+  //   title,
+  //   message,
+  // }: {
+  //   color: ChalkStringFns;
+  //   title: string;
+  //   message: Error | string;
+  // }) {
+  //   console.log(
+  //     `${chalk.gray(
+  //       `[${new Date().toLocaleTimeString("en-US")}] ${chalk.blue(pjson.name)}`
+  //       //@ts-ignore
+  //     )} ${chalk[color](`[${title}]`)} ${message}`
+  //   );
+  // }
 
-  export async function log({
-    color,
-    title,
-    message,
-  }: {
-    color: ChalkStringFns;
-    title: string;
-    message: Error | string;
-  }) {
-    console.log(
-      `${chalk.gray(
-        `[${new Date().toLocaleTimeString("en-US")}] ${chalk.blue(pjson.name)}`
-        //@ts-ignore
-      )} ${chalk[color](`[${title}]`)} ${message}`
-    );
-  }
-
-  export async function logInfo(
-    message: Error | string,
-    title?: string,
-    color?: ChalkStringFns
-  ) {
-    console.log(
-      //@ts-ignore
-      `${chalk.gray(`[${new Date().toLocaleTimeString("en-US")}]`)} ${chalk[
-        color ? color : ChalkStringFns.UNDERLINE
-      ](`[${title ? title : "log"}]`)} ${message}`
-    );
-  }
+  // export async function logInfo(
+  //   message: Error | string,
+  //   title?: string,
+  //   color?: ChalkStringFns
+  // ) {
+  //   console.log(
+  //     //@ts-ignore
+  //     `${chalk.gray(`[${new Date().toLocaleTimeString("en-US")}]`)} ${chalk[
+  //       color ? color : ChalkStringFns.UNDERLINE
+  //     ](`[${title ? title : "log"}]`)} ${message}`
+  //   );
+  // }
 
   export async function err(error: Error) {
     try {
-      log({
-        color: ChalkStringFns.RED,
-        title: "error",
-        message: error,
-      }).then(() => {
-        //keep this until i find whats up
-        console.error(error.stack);
-        process.exit();
-      });
+      rConsole.log("error", error.message, "red", true, error.name, false);
+      process.exit();
     } catch (err) {
       console.error(err);
       process.exit();
@@ -112,48 +96,61 @@ export namespace consoleFns {
     commandClient: CommandClient,
     interactionCommandClient: InteractionCommandClient
   ) {
-    log({
-      color: ChalkStringFns.GREEN,
-      title: "run",
-      message: "Importing and initializing commands",
-    });
+    rConsole.log(
+      "import",
+      "Importing and initializing commands",
+      "green",
+      false,
+      undefined,
+      false
+    );
 
     await commandClient
       .addMultipleIn("./commands", { subdirectories: true })
       .catch((x) => {
         consoleFns.err(x);
       });
-    log({
-      color: ChalkStringFns.BLUE,
-      title: "import",
-      message: "imported prefixed commands",
-    });
+    rConsole.log(
+      "import",
+      "imported prefixed commands",
+      "blue",
+      false,
+      undefined,
+      false
+    );
 
     await interactionCommandClient
       .addMultipleIn("./commands", { subdirectories: true })
       .catch(err);
-    log({
-      color: ChalkStringFns.BLUE,
-      title: "import",
-      message: "imported slash commands",
-    });
+    rConsole.log(
+      "import",
+      "imported interaction commands",
+      "blue",
+      false,
+      undefined,
+      false
+    );
   }
 
   export async function runShard(shardClient: ShardClient) {
     await shardClient.run();
-    log({
-      color: ChalkStringFns.GREEN,
-      title: "run",
-      message: `Started shard ${shardClient.shardId}`,
-    });
+    rConsole.log(
+      "run",
+      `Started shard ${shardClient.shardId}`,
+      "green",
+      false,
+      undefined,
+      false
+    );
 
-    const branch = await getBranch();
+    const branch = rConsole.getBranch();
 
     shardClient.gateway.setPresence({
       activity: {
         name: `${
           config.shout === null
             ? `v${pjson.version} | ${config.prefix} | [${
+                //@ts-ignore
                 branch == "main" || branch === "dev"
                   ? "" + branch
                   : "dev." + branch
@@ -164,30 +161,39 @@ export namespace consoleFns {
         url: "https://twitch.tv/insyri",
       },
     });
-    log({
-      color: ChalkStringFns.GREEN,
-      title: "run",
-      message: `Updated presence of shard ${shardClient.shardId}`,
-    });
+    rConsole.log(
+      "run",
+      `Set presence for shard ${shardClient.shardId}`,
+      "green",
+      false,
+      undefined,
+      false
+    );
   }
 
   export async function runCC(commandClient: CommandClient) {
-    log({
-      color: ChalkStringFns.GREEN,
-      title: "run",
-      message: `Starting CommandClient`,
-    });
+    rConsole.log(
+      "run",
+      `Starting command client`,
+      "green",
+      false,
+      undefined,
+      false
+    );
     await commandClient.run();
   }
 
   export async function runICC(
     interactionCommandClient: InteractionCommandClient
   ) {
-    log({
-      color: ChalkStringFns.GREEN,
-      title: "run",
-      message: `Starting InteractionCommandClient`,
-    });
+    rConsole.log(
+      "run",
+      `Starting interaction command client`,
+      "green",
+      false,
+      undefined,
+      false
+    );
     await interactionCommandClient.run();
   }
 }

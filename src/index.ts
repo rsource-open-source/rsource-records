@@ -19,7 +19,7 @@ import {
 } from "detritus-client";
 
 //namespaces
-import { ChalkStringFns, consoleFns } from "./consoleFunctions";
+import { consoleFns } from "./consoleFunctions";
 
 //project info
 const pjson = require("../package.json");
@@ -29,6 +29,7 @@ const pjson = require("../package.json");
 //interfaces
 import { IConfig } from "./interfaces";
 import chalk from "chalk";
+import { rConsole } from "rsource-utils";
 
 //etc
 const { InteractionCallbackTypes } = Constants;
@@ -114,16 +115,13 @@ shardClient.on("messageCreate", async (payload) => {
 
 (async () => {
   process.stdout.write("\n");
+  rConsole.testFile();
   try {
     await consoleFns.runShard(shardClient);
     //await consoleFns.importCommands(commandClient, interactionCommandClient);
     await consoleFns.runCC(commandClient);
     //await consoleFns.runICC(interactionCommandClient);
-    await consoleFns.log({
-      color: ChalkStringFns.MAGENTA,
-      title: "success",
-      message: "rsource records online :3",
-    });
+    rConsole.log("success", "rsource records online :3", "magenta");
     //await consoleFns.log({
     //  color: ChalkStringFns.CYAN,
     //  title: "local info",
@@ -131,13 +129,13 @@ shardClient.on("messageCreate", async (payload) => {
     //    typeof wifi === undefined ? ethernet![1]?.address : wifi![1]?.address
     //  )} branch ${chalk.bold(await consoleFns.getBranch())}`,
     //});
-    await consoleFns.log({
-      color: ChalkStringFns.CYAN,
-      title: "local info",
-      message: `rsource-records version ${chalk.bold(
+    rConsole.log(
+      "local info",
+      `rsource records version ${chalk.bold(
         pjson.version
       )}, node version ${chalk.bold(process.versions.node)}`,
-    });
+      "cyan"
+    );
   } catch (err) {
     await consoleFns.err(<Error>err);
   }
