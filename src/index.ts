@@ -115,7 +115,6 @@ shardClient.on("messageCreate", async (payload) => {
 
 (async () => {
   process.stdout.write("\n");
-  rConsole.testFile();
   try {
     await consoleFns.runShard(shardClient);
     //await consoleFns.importCommands(commandClient, interactionCommandClient);
@@ -137,6 +136,7 @@ shardClient.on("messageCreate", async (payload) => {
       "cyan"
     );
   } catch (err) {
-    await consoleFns.err(<Error>err);
+    if (err instanceof Error)
+      rConsole.logErr(err.name, err.message, true, false);
   }
 })();

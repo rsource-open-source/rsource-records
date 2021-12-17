@@ -34,7 +34,7 @@
     "detritus-rest": "^0.7.0",
     "dotenv": "^10.0.0",
     "imagescript": "^1.2.9",
-    "rsource-utils": "^0.0.12",
+    "rsource-utils": "^0.0.14",
     "toml": "^3.0.0",
     "typescript": "^4.5.3"
   }

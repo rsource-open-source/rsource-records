@@ -84,7 +84,7 @@ export namespace consoleFns {
 
   export async function err(error: Error) {
     try {
-      rConsole.log("error", error.message, "red", true, error.name, false);
+      rConsole.log("error", error.message, "red", true, false);
       process.exit();
     } catch (err) {
       console.error(err);
@@ -101,7 +101,6 @@ export namespace consoleFns {
       "Importing and initializing commands",
       "green",
       false,
-      undefined,
       false
     );
 
@@ -110,14 +109,7 @@ export namespace consoleFns {
       .catch((x) => {
         consoleFns.err(x);
       });
-    rConsole.log(
-      "import",
-      "imported prefixed commands",
-      "blue",
-      false,
-      undefined,
-      false
-    );
+    rConsole.log("import", "imported prefixed commands", "blue", false, false);
 
     await interactionCommandClient
       .addMultipleIn("./commands", { subdirectories: true })
@@ -127,7 +119,6 @@ export namespace consoleFns {
       "imported interaction commands",
       "blue",
       false,
-      undefined,
       false
     );
   }
@@ -139,7 +130,6 @@ export namespace consoleFns {
       `Started shard ${shardClient.shardId}`,
       "green",
       false,
-      undefined,
       false
     );
 
@@ -166,20 +156,12 @@ export namespace consoleFns {
       `Set presence for shard ${shardClient.shardId}`,
       "green",
       false,
-      undefined,
       false
     );
   }
 
   export async function runCC(commandClient: CommandClient) {
-    rConsole.log(
-      "run",
-      `Starting command client`,
-      "green",
-      false,
-      undefined,
-      false
-    );
+    rConsole.log("run", `Starting command client`, "green", false, false);
     await commandClient.run();
   }
 
@@ -191,7 +173,6 @@ export namespace consoleFns {
       `Starting interaction command client`,
       "green",
       false,
-      undefined,
       false
     );
     await interactionCommandClient.run();
