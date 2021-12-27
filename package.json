@@ -22,7 +22,7 @@
   "devDependencies": {
     "nodemon": "^2.0.15",
     "pariah": "^1.3.0",
-    "prisma": "^3.6.0"
+    "prisma": "^3.7.0"
   },
   "dependencies": {
     "@ffmpeg/core": "^0.10.0",
