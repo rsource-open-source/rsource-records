@@ -1,7 +1,7 @@
 //import { checkRover } from "../typeChecks";
 import { HTTPStatusCodes } from "detritus-rest/lib/constants";
 
-export module rover {
+export namespace rover {
   export class ApiResponse {
     status!: string;
 
@@ -33,7 +33,7 @@ export module rover {
   }
 }
 
-export module bloxlink {
+export namespace bloxlink {
   export class ApiResponse {
     status!: "ok" | "error";
     constructor(response: any) {
@@ -62,7 +62,7 @@ export module bloxlink {
   }
 }
 
-export module roblox {
+export namespace roblox {
   export class ApiResolve {
     Id!: number;
     Username!: string;
