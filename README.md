@@ -16,7 +16,7 @@
 
 [![](https://shields.io/badge/Oracle%20Cloud%20Infrastructure%20VPC-05122A?logo=oracle&logoColor=F80000&style=for-the-badge)](https://www.oracle.com/cloud/) [![](https://shields.io/badge/Ubuntu%20Linux-05122A?logo=ubuntu&style=for-the-badge)](https://ubuntu.com/) 
 
-![](https://shields.io/badge/DigitalOcean%20Managed%20Database-05122A?logo=digitalocean&style=for-the-badge) [![](https://shields.io/badge/PostgreSQL-05122A?logo=postgresql&style=for-the-badge)](https://postgres.org/)
+[![](https://shields.io/badge/DigitalOcean%20Managed%20Database-05122A?logo=digitalocean&style=for-the-badge)](https://www.digitalocean.com/products/managed-databases) [![](https://shields.io/badge/PostgreSQL-05122A?logo=postgresql&style=for-the-badge)](https://postgres.org/)
 
 ## About
 rsource-records is a TypeScript written Discord bot that uses the [detritus library](https://github.com/detritusjs/client) to interact with the Discord API. This bot is made to fetch content from the Roblox Bhop & Surf games via the [StrafesNET API](https://api.strafes.net/). This aims to be a bot that has many more features than just an API fetcher in the future.
