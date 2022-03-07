@@ -22,7 +22,7 @@
   "devDependencies": {
     "nodemon": "^2.0.15",
     "pariah": "^1.3.0",
-    "prisma": "^3.6.0"
+    "prisma": "^3.10.0"
   },
   "dependencies": {
     "@ffmpeg/core": "^0.10.0",
@@ -35,6 +35,6 @@
     "dotenv": "^10.0.0",
     "imagescript": "^1.2.9",
     "rsource-utils": "^0.0.14",
-    "typescript": "^4.5.3"
+    "typescript": "^4.6.2"
   }
 }
