@@ -35,6 +35,6 @@
     "dotenv": "^10.0.0",
     "imagescript": "^1.2.9",
     "rsource-utils": "^0.0.14",
-    "typescript": "^4.6.3"
+    "typescript": "^4.6.4"
   }
 }
