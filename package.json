@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/rsource-open-source/rsource-records#readme",
   "devDependencies": {
-    "nodemon": "^2.0.16",
+    "nodemon": "^2.0.18",
     "pariah": "^2.8.91",
     "prisma": "^3.6.0"
   },
